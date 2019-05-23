@@ -102,7 +102,7 @@ namespace CityInfo.API.Controllers
 
             city.PointsOfInterest.Add(finalPointOfInterest);
 
-            return CreatedAtRoute("GetPointOfInterest", new {cityId = cityId, id = finalPointOfInterest.Id}, finalPointOfInterest);
+            return CreatedAtRoute("GetPointOfInterest", new {cityId, id = finalPointOfInterest.Id}, finalPointOfInterest);
         }
 
         [HttpPut("{cityId}/pointsofinterest/{id}")]

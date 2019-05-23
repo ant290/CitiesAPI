@@ -54,11 +54,14 @@ namespace CityInfo.API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory,
+            CityInfoContext cityInfoContext)
         {
             //nlog offers an extension to ILoggerFactory, so instead of adding a provider and calling a new provider... we can just call the AddNLog method.
             //loggerFactory.AddProvider(new NLogLoggerProvider());
             loggerFactory.AddNLog();
+
+            cityInfoContext.EnsureSeedDataForContext();
 
             if (env.IsDevelopment())
             {

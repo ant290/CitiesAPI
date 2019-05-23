@@ -4,8 +4,9 @@ namespace CityInfo.API.Services
 {
     public class CloudMailService : IMailService
     {
-        private string _mailTo = "admin@mycompany.com";
-        private string _mailFrom = "noreply@mycompany.com";
+        //here we set the properties to be from the config file using the hierarchical plan of mailSettings -> mailToAddress
+        private string _mailTo = Startup.Configuration["mailSettings:mailToAddress"];
+        private string _mailFrom = Startup.Configuration["mailSettings:mailFromAddress"];
 
         /// <summary>
         /// this mocks sending a mail and instead writes to debug window

@@ -11,6 +11,8 @@ namespace CityInfo.API.Entities
         [Required]
         [MaxLength(50)]
         public string Name { get; set; }
+        [MaxLength(200)]
+        public string Description { get; set; }
         
         //Foreign key annotation not required when convention based properties exist
         //this means that because there is a city property with type and name City, and a CityId property, EF will assume the relationship

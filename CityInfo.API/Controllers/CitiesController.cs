@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 using CityInfo.API.Models;
 using CityInfo.API.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -19,20 +20,10 @@ namespace CityInfo.API.Controllers
         [HttpGet()]
         public IActionResult GetCities()
         {
-            //return Ok(CitiesDataStore.Current.Cities);
             var cityEntities = _cityInfoRepository.GetCities();
 
-            var results = new List<CityWithoutPointsOfInterestDto>();
-
-            foreach (var cityEntity in cityEntities)
-            {
-                results.Add(new CityWithoutPointsOfInterestDto
-                {
-                    Id = cityEntity.Id,
-                    Description = cityEntity.Description,
-                    Name = cityEntity.Name
-                });
-            }
+            //use Automapper to convert cityEntities to dto
+            var results = Mapper.Map<IEnumerable<CityWithoutPointsOfInterestDto>>(cityEntities);
 
             return Ok(results);
         }

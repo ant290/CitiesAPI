@@ -6,8 +6,9 @@ using CityInfo.API.Entities;
 
 namespace CityInfo.API.Services
 {
-    interface ICityInfoRepository
+    public interface ICityInfoRepository
     {
+        bool CityExists(int cityId);
         IEnumerable<City> GetCities();
         City GetCity(int cityId, bool includePointsOfInterest);
         IEnumerable<PointOfInterest> GetPointsOfInterestForCity(int cityId);
